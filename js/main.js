@@ -1,9 +1,9 @@
-import {fn1, complex} from "./button.js";
+import {Solve, MyJSX} from "./button.js";
 
-//python -m http.server
+MyJSX(2);
 
-let btnSecondary = document.querySelector('#secondary');
-let btnPrimary = document.querySelector('#primary');
+let btnSolve = document.querySelector('#solve');
+let btnUpdate = document.querySelector('#update');
 
-btnPrimary.addEventListener('click', () => complex())
-btnSecondary.addEventListener('click', () => fn1())
+btnSolve.addEventListener('click', () => Solve());
+btnUpdate.addEventListener('click', () => MyJSX( document.getElementById("level").value ));

@@ -9,13 +9,28 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.2.0/math.js" integrity="sha512-SewEag0kt1xsJdbfAXgLyLvYXeAoGEla4M6JSitT6ocJVI+VeUbFXkgrbloNn4cVgq46caRf31un2eoalq6YOw==" crossorigin="anonymous"></script>
     </head>
     <body>
-        <header>Remember to not go crazy</header>
-        <input id="num1" placeholder="num1">
-        <input id="num2" placeholder="num2">
-        <button id="primary">Sumar</button>
-        <br>
-        <input id="num1" placeholder="num1">
-        <input id="num2" placeholder="num2">
-        <button id="secondary">Sumar</button>
+        <header>Simple solucionador de Gauss Jordan</header>
+        <hr>
+        <div id="matrix">
+            <!-- The matrix gets placed in here with innerHTML -->
+        </div>
+        <hr>
+        <label>Dimensión: </label>
+        <select name="options" id="level">
+            <option value="2">2x2</option>
+            <option value="3">3x3</option>
+            <option value="4">4x4</option>
+            <option value="5">5x5</option>
+            <option value="6">6x6</option>
+        </select>
+        <button id="update">Dimensionar</button>
+        <button id="solve">Calcular</button>
+        <hr>
+        <div id="answer">
+            Resultados:
+            <br>
+            Aún no se ha calculado nada
+        </div>
+        <hr>
     </body>
 </html>
