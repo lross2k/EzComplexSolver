@@ -1,5 +1,4 @@
 var CurrentN = 0;
-const Letters = ['x', 'y', 'z', 'i', 'j', 'k'];
 const legalChrs = ['+','-','i','j',',','.'];
 
 // TODO better parser
@@ -76,8 +75,8 @@ function CoolParse( id ) {
 }
 
 function prntResult(result) {
-    let str = 'Resultado:<br>';
-    for (var i = 0; i < CurrentN; i++) { str += Letters[i] + ': ' + result[i] + '<br>'; }
+    let str = '';
+    for (var i = 0; i < CurrentN; i++) { str += 'x' + (i+1) + ': ' + result[i] + '<br>'; }
     document.getElementById("answer").innerHTML = str;
 }
 
@@ -88,7 +87,7 @@ export function MyJSX(n) {
         for (let j = 0; j < n; j++) {
             str += '<input id="A' + (i+1) + (j+1) + '" placeholder="A' + (i+1) + (j+1) + '">';
         }
-        str += '<input id="' + Letters[i] + '" placeholder="' + Letters[i] + '" disabled>' +
+        str += '<input id="x" placeholder="x' + (i+1) + '" disabled>' +
         '<input id="b' + (i+1) + '" placeholder="b' + (i+1) + '"><br>';
     }
     document.getElementById("matrix").innerHTML = str;

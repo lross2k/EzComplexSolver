@@ -2,35 +2,37 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>EzComplexSolver</title>
+        <title>ComplexSolver</title>
         <link rel="stylesheet" href="css/index.css">
         <link rel="shortcut icon" href="./favicon.ico"/>
         <script type="module" src="./js/main.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.2.0/math.js" integrity="sha512-SewEag0kt1xsJdbfAXgLyLvYXeAoGEla4M6JSitT6ocJVI+VeUbFXkgrbloNn4cVgq46caRf31un2eoalq6YOw==" crossorigin="anonymous"></script>
     </head>
     <body>
-        <header>Simple solucionador de Gauss Jordan</header>
-        <hr>
+        <header>Solucionar sistemas de ecuaciones</header>
         <div id="matrix">
             <!-- The matrix gets placed in here with innerHTML -->
         </div>
-        <hr>
-        <label>Dimensión: </label>
-        <select name="options" id="level">
-            <option value="2">2x2</option>
-            <option value="3">3x3</option>
-            <option value="4">4x4</option>
-            <option value="5">5x5</option>
-            <option value="6">6x6</option>
-        </select>
-        <button id="update">Dimensionar</button>
-        <button id="solve">Calcular</button>
-        <hr>
-        <div id="answer">
-            Resultados:
-            <br>
-            Aún no se ha calculado nada
+        <div id="buttons">
+            <div id="dim-btn">
+                <select name="options" id="level">
+                    <option value="2">2x2</option>
+                    <option value="3">3x3</option>
+                    <option value="4">4x4</option>
+                    <option value="5">5x5</option>
+                    <option value="6">6x6</option>
+                </select>
+                <button id="update">Actualizar</button>
+            </div>
+            <div id="solve-btn">
+                <button id="solve">Calcular</button>
+            </div>
         </div>
-        <hr>
+        <div id="ans-wrap">
+            <h3>Resultados:</h3>
+            <div id="answer">
+                <p>Aún no se ha calculado nada</p>
+            </div>
+        </div>
     </body>
 </html>
