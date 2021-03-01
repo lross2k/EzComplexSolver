@@ -1,37 +1,9 @@
 var CurrentN = 0;
 const legalChrs = ['+','-','i','j',',','.'];
 
-// TODO better parser
-function get_complex(id) {
-    var str = document.getElementById( id ).value;
-
-    if ( isNumeric(str) ) {
-        return math.complex(str, 0);;
-    }
-
-    if (str.includes("+", 0)) {
-        var arr = str.split('+');
-    } else if (str.includes("-", 0)) {
-        var arr = str.split('-');
-    }
-    if (arr[0] == "") {
-        return [0,0];
-    }
-    var fixed = "";
-    for (var i = 0; i < arr[1].length ; i++) {
-        if (arr[1][i] == 'j' || arr[1][i] == 'i') {
-            arr[1] = fixed;
-        } else {
-            fixed += arr[1][i];
-        }
-    }
-    return math.complex(arr[0], arr[1]);
-}
-
 function isNumeric(str) {
-    if (typeof str != "string") return false // we only process strings!  
-    return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
-           !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
+    if (typeof str != "string") return false
+    return !isNaN(str) && !isNaN(parseFloat(str))
 }
 
 function CoolParse( id ) {
@@ -84,25 +56,24 @@ export function MyJSX(n) {
     if (n == CurrentN){return;}
     let str = '';
     for (let i = 0; i < n; i++) {
+        str += '<div id="matrix-row">';
         for (let j = 0; j < n; j++) {
             str += '<input id="A' + (i+1) + (j+1) + '" placeholder="A' + (i+1) + (j+1) + '">';
         }
         str += '<input id="x" placeholder="x' + (i+1) + '" disabled>' +
-        '<input id="b' + (i+1) + '" placeholder="b' + (i+1) + '"><br>';
+        '<input id="b' + (i+1) + '" placeholder="b' + (i+1) + '"></div>';
     }
     document.getElementById("matrix").innerHTML = str;
     CurrentN = n;
 }
-
+//</div><div id="equal-row">
 export function Solve() {
     let A = [], b = [];
     for (var i = 0; i < CurrentN; i++) { A.push( [] ); }
     for (var i = 0; i < CurrentN; i++) {
         for (var j = 0; j < CurrentN; j++) {
-            //A[i].push( get_complex( 'a' + (i+1) + (j+1) ) );    //Temporarily using the old parser
             A[i].push( CoolParse( 'A' + (i+1) + (j+1) ) );
         }
-        //b.push( get_complex( 'r' + (i+1) ) );                   //Temporarily using the old parser
         b.push( CoolParse( 'b' + (i+1) ) );
     }
     prntResult(math.lusolve(A, b));
