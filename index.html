@@ -5,6 +5,7 @@
         <title>ComplexSolver</title>
         <link rel="stylesheet" href="css/index.css">
         <link rel="shortcut icon" href="./favicon.ico"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <script type="module" src="./js/main.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.2.0/math.js" integrity="sha512-SewEag0kt1xsJdbfAXgLyLvYXeAoGEla4M6JSitT6ocJVI+VeUbFXkgrbloNn4cVgq46caRf31un2eoalq6YOw==" crossorigin="anonymous"></script>
     </head>
@@ -12,7 +13,8 @@
         <header>
             <h1>Solucionar sistemas de ecuaciones</h1>
         </header>
-        <div id="matrix">
+        <h3 class="mensaje">¡Este sitio aún no se encuentra finalizado!</h3>
+        <div class="matrix" id="matrix">
             <!-- The matrix gets placed in here with innerHTML -->
         </div>
         <div id="buttons">
@@ -23,18 +25,26 @@
                     <option value="4">4x4</option>
                     <option value="5">5x5</option>
                     <option value="6">6x6</option>
+                    <!-- 
+                            For the lols
+                    <option value="60">60x60</option>
+                    
+                    -->
                 </select>
-                <button id="update">Actualizar</button>
+                <button id="update">Dimensionar</button>
             </div>
-            <div id="solve-btn">
-                <button id="solve">Calcular</button>
+            <div id="solve">
+                <button class="solve-btn">Calcular</button>
             </div>
         </div>
-        <div id="ans-wrap">
+        <div id="ans-wrap" class="ans-wrap">
             <h3>Resultados:</h3>
-            <div id="answer">
-                <p>Aún no se ha calculado nada</p>
-            </div>
+            <h3 id="error"></h3>
+            <p id="answer">Aún no se ha calculado nada</p>
         </div>
+        <footer>
+            <p>Proyecto de: <a href="https://github.com/lross2k">lross2k</a></p>
+            <a href="https://github.com/lross2k/lross2k.github.io">Repositorio en GitHub</a>
+        </footer>
     </body>
 </html>

@@ -1,17 +1,33 @@
+// Global variables which I have been to lazy to manage correctly
 var CurrentN = 0;
 const legalChrs = ['+','-','i','j',',','.'];
 
+// Takes a string and returns True if the string is a number
 function isNumeric(str) {
     if (typeof str != "string") return false
     return !isNaN(str) && !isNaN(parseFloat(str))
 }
 
-function CoolParse( id ) {
+/**
+ * This is a temporary solution!!!!
+ * Takes the id of an <input> element and analizes the value to clean the format
+ * Removes all non-legal characters, could be ' ', 'a', 'd', etc...
+ * Returns a math.complex() from the math.js library
+ */
+function weirdParser( id ) {
+    // I'd comment more on this, but I plan on rewriting this whole thing with regex
     let str = document.getElementById( id ).value, clstr = '';
-    if (str == '') { return math.complex(0,0); }
+    if (str == '') { 
+        document.getElementById(id).value = 0;
+        return math.complex(0,0);
+    }
     for (var i = 0; i < str.length; i++) {
         if ( isNumeric(str[i]) || ( legalChrs.indexOf(str[i]) >= 0 ) ) {
             clstr += str[i];
+        } else {
+            document.getElementById("ans-wrap").style.backgroundColor = "#FFCC33";
+            document.getElementById("error").innerText = "Precaución! Carácteres indeseados fueron detectados";
+            document.getElementById("ans-wrap").style.backgroundColor = "#FFCC33";
         }
     }
     str = clstr;
@@ -46,35 +62,55 @@ function CoolParse( id ) {
     return answer;
 }
 
+// Inserts the result in the index.html using .innerHTML
 function prntResult(result) {
     let str = '';
     for (var i = 0; i < CurrentN; i++) { str += 'x' + (i+1) + ': ' + result[i] + '<br>'; }
     document.getElementById("answer").innerHTML = str;
 }
 
-export function MyJSX(n) {
+// Builds a matrix HTML for any given size n for the A matrix of order nxn
+export function matrixBuilder(n) {
     if (n == CurrentN){return;}
     let str = '';
     for (let i = 0; i < n; i++) {
         str += '<div id="matrix-row">';
         for (let j = 0; j < n; j++) {
-            str += '<input id="A' + (i+1) + (j+1) + '" placeholder="A' + (i+1) + (j+1) + '">';
+            str += '<input class="input-num" id="A' + (i+1) + (j+1) + '" placeholder="A' + (i+1) + (j+1) + '">';
         }
-        str += '<input id="x" placeholder="x' + (i+1) + '" disabled>' +
-        '<input id="b' + (i+1) + '" placeholder="b' + (i+1) + '"></div>';
+        str += '<input class="x-num" placeholder="x' + (i+1) + '" disabled>' +
+        '<input class="input-num" id="b' + (i+1) + '" placeholder="b' + (i+1) + '"></div>';
     }
     document.getElementById("matrix").innerHTML = str;
     CurrentN = n;
 }
-//</div><div id="equal-row">
-export function Solve() {
-    let A = [], b = [];
+
+// Solves the matrix taking it's values, calling the parser and using math.lusolve() from math.js
+export function solver() {
+    document.getElementById("ans-wrap").style.backgroundColor = "#0066CC";
+    document.getElementById("error").innerText = "";
+    let A = [], b = [], parsed = '';
     for (var i = 0; i < CurrentN; i++) { A.push( [] ); }
     for (var i = 0; i < CurrentN; i++) {
         for (var j = 0; j < CurrentN; j++) {
-            A[i].push( CoolParse( 'A' + (i+1) + (j+1) ) );
+            parsed = weirdParser( 'A' + (i+1) + (j+1) );
+            if (parsed == 'error') {
+                document.getElementById("ans-wrap").style.backgroundColor = "#990000";
+                document.getElementById("error").innerText = "Error por números complejos, casilla: " + 'A' + (i+1) + (j+1);
+                //document.getElementById( 'A' + (i+1) + (j+1) ).style.backgroundColor = "#990000"; // Mark the error in red // WIP
+                document.getElementById("answer").innerText = "No se pudo calcular";
+                return;
+            }
+            A[i].push( parsed );
         }
-        b.push( CoolParse( 'b' + (i+1) ) );
+        parsed = weirdParser( 'b' + (i+1) );
+        if (parsed == 'error') {
+            document.getElementById("ans-wrap").style.backgroundColor = "#990000";
+            document.getElementById("error").innerText = "Error por números complejos, casilla: " + 'b' + (i+1);
+            document.getElementById("answer").innerText = "No se pudo calcular";
+            return;
+        }
+        b.push( parsed );
     }
     prntResult(math.lusolve(A, b));
 }

@@ -1,35 +1,65 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap'); /* Roboto font */
+/* Roboto font
+Used because it's cute and the same as in the main website I'm learning how to make */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+/**
+ * I just started out this, there's A LOT to fix, mobile devices won't even look decent yet, ----WIP----
+ * Listen I have only used CSS for like 5 cummulative hours, so this is terrible but I will fix it
+ * Someday, not today, possibly never unless I had to rewrite it, hopefully never
+ */
 
-html {
+ html,
+ body {
+    margin:0;
+    padding:0;
+ 
+    min-height: 100vh;
+ 
     background-color:#333333;
+
     color: #fff;
     height: 100vh;
-    width: 100vw;
+    width: 100%;
 
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
-}
+ }
 
 header {
     box-sizing: border-box;
     margin: 0;
-    padding: 0;
 
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    padding: 2px 0%;
+    padding: 10px 0%;
 
     text-align: center;
     background-color: #0066CC;
     margin: 0px;
 }
 
-@media (max-width: 1000px) {
-    html {
-        font-size: 30px;
+@media (max-width: 400px) {
+    body {
+        font-size: 10px;
     }
+
+    button {
+        font-size: 10px;
+    }
+    
 }
+
+@media (max-width: 800px) {
+    body {
+        font-size: 12px;
+    }
+
+    button {
+        font-size: 15px;
+    }
+    
+}
+
 
 #buttons {
     display: flex;
@@ -39,8 +69,6 @@ header {
 }
 
 button {
-    font-weight: 300;
-    font-size: 15px;
     color: #ffffff;
     text-decoration: none;
     
@@ -72,55 +100,91 @@ input {
     text-align: center;
 }
 
-#solve {
+.solve-btn {
     background-color: green;
 }
 
-#matrix {
+.matrix {
     margin: 20px;
     align-items: center;
     align-content: center;
-    /*width: 1100px;*/
     margin: auto;
     padding: 0px;
     margin-top: 15px;
     margin-bottom: 15px;
-    /*display: flex;
-    flex-direction: row;*/
 
     display: grid;
     grid-template-columns: 1fr;
-}
 
-#x {
-    background-color: #333333;
-    width: 20px;
-    color: #fff;
-}
-
-body {
-    height: 100vh;
-    margin: 0px;
-}
-
-#ans-wrap {
-    text-align: center;
-}
-
-#matrix {
-    background-color: #333;
     overflow: auto;
     white-space: nowrap;
 }
 
-#matrix div {
-    /*display: inline-block;*/
-    color: white;
+.matrix div {
     text-align: center;
-    padding: 14px;
-    text-decoration: none;
 }
-  
-#matrix div:hover {
-    background-color: #777;
+
+.x-num {
+    background: #333333;
+    width: 20px;
+    color: #fff;
+}
+
+.ans-wrap {
+    margin-top: 15px;
+    padding: 10px;
+    text-align: center;
+    /*background: #0066CC;*/
+}
+
+.ans-wrap p h3 {
+    padding: 0px;
+    margin: 0px;
+}
+
+h3 {
+    padding: 0px;
+    margin: 0px;
+}
+
+p {
+    padding: 0px;
+    margin: 0px;
+}
+
+.input-num {
+    transition: 0.2s;
+}
+
+.input-num:hover {
+    background-color: #aaaaa1;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    min-height: 80px;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px 0%;
+
+    text-align: center;
+    background-color: #0066CC;
+    margin: 0px;
+}
+
+.mensaje {
+    background: green;
+    margin: 5px;
+    text-align: center;
+}
+
+a {
+    color: black;
 }
