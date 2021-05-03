@@ -65,8 +65,19 @@ function weirdParser( id ) {
 // Inserts the result in the index.html using .innerHTML
 function prntResult(result) {
     let str = '';
+    let pol = '';
     for (var i = 0; i < CurrentN; i++) { str += 'x' + (i+1) + ': ' + result[i] + '<br>'; }
+
+    for (var i = 0; i < CurrentN; i++) {
+        if (result[i][0] != 0) {
+            pol += 'x' + (i+1) + ': ' + math.sqrt((result[i][0].re)**2 + (result[i][0].im)**2) + '<br>';
+        } else {
+            pol += 'x' + (i+1) + ': ' + 0 + '<br>';
+        }
+    }
+
     document.getElementById("answer").innerHTML = str;
+    document.getElementById("ans-pol").innerHTML = pol;
 }
 
 // Builds a matrix HTML for any given size n for the A matrix of order nxn
