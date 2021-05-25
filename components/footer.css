@@ -1,0 +1,16 @@
+.app-footer {
+    position: relative;
+    bottom: 0%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+footer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    text-align: center;
+    background-color: #0066CC;
+    padding: 10px;
+}

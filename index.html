@@ -3,50 +3,16 @@
     <head>
         <meta charset="utf-8">
         <title>ComplexSolver</title>
-        <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="./index.css">
         <link rel="shortcut icon" href="./favicon.ico"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script type="module" src="./js/main.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.2.0/math.js" integrity="sha512-SewEag0kt1xsJdbfAXgLyLvYXeAoGEla4M6JSitT6ocJVI+VeUbFXkgrbloNn4cVgq46caRf31un2eoalq6YOw==" crossorigin="anonymous"></script>
     </head>
-    <body>
-        <header>
-            <h1>Solucionar sistemas de ecuaciones</h1>
-        </header>
-        <h3 class="mensaje">¡Este sitio aún no se encuentra finalizado!</h3>
-        <div class="matrix" id="matrix">
-            <!-- The matrix gets placed in here with innerHTML -->
-        </div>
-        <div id="buttons">
-            <div id="dim-btn">
-                <select name="options" id="level">
-                    <option value="2">2x2</option>
-                    <option value="3">3x3</option>
-                    <option value="4">4x4</option>
-                    <option value="5">5x5</option>
-                    <option value="6">6x6</option>
-                    <!-- 
-                            For the lols
-                    <option value="60">60x60</option>
-                    
-                    -->
-                </select>
-                <button id="update">Dimensionar</button>
-            </div>
-            <div id="solve">
-                <button class="solve-btn">Calcular</button>
-            </div>
-        </div>
-        <div id="ans-wrap" class="ans-wrap">
-            <h3>Resultados:</h3>
-            <h3 id="error"></h3>
-            <p id="answer">Aún no se ha calculado nada</p>
-            <h3>Polares:</h3>
-            <p id="ans-pol">Valor polar</p>
-        </div>
-        <footer>
-            <p>Proyecto de: <a href="https://github.com/lross2k">lross2k</a></p>
-            <a href="https://github.com/lross2k/lross2k.github.io">Repositorio en GitHub</a>
-        </footer>
+    <body id="app">
+        <script src="./index.js"></script>
+        <script src="./components/navbar.js"></script>
+        <script src="./components/footer.js"></script>
+        <script src="./components/matrix-viewport.js"></script>
+        <script src="./components/body.js"></script>
     </body>
 </html>
