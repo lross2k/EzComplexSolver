@@ -27,4 +27,4 @@ wrote as I did this in a few hours over three days with
 no prior experience in frontend.
 - Integrating my own Gaussian Elimination and complex numbers library for JavaScript, this is
   implemented as a git submodule in `numerical-methods/` which shall be initiated with 
-  `git submodule init` after cloning this repo with git clone.
+  `git submodule init` and `git submodule update` after cloning this repo with git clone.

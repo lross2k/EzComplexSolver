@@ -89,18 +89,21 @@ class Matrix {
     // Method that uses math.js to solve the system of equations
     solve() {
         let A = [], b = [], parsed = '';
+        // Generate empty Matrix A 
         for (var i = 0; i < this.n; i++) { A.push( [] ); }
+        // Iterate i from 0 to n (rows)
         for (var i = 0; i < this.n; i++) {
+            // Iterate j from 0 to n (columns)
             for (var j = 0; j < this.n; j++) {
                 parsed = this.weirdParser(this.id + 'A' + (j+1) + (i+1) );
-                if (parsed == 'error') {
+                if (parsed === 'error') {
                     // Error messages, pretty bad
                     document.getElementById("ans-wrap"+ this.id).style.backgroundColor = "#990000";
                     document.getElementById("error"+ this.id).innerText = "Error por números complejos, casilla: " + 'A' + (j+1) + (i+1);
                     document.getElementById("answer"+ this.id).innerText = "No se pudo calcular";
                     return;
                 }
-                A[i].push( parsed );
+                A[i][j] = parsed;
             }
             parsed = this.weirdParser( this.id + 'b' + (i+1) );   //id="' + this.id + 'b' + (i+1) + '"
             if (parsed == 'error') {
@@ -111,7 +114,12 @@ class Matrix {
             }
             b.push( parsed );
         }
-        this.prntResult(math.lusolve(A, b));
+        console.log("Matrices");
+        console.log(A);
+        console.log(b);
+        let reslt = elimGaussComplex(A, b);
+        console.log(reslt)
+        this.prntResult(reslt);
     }
 
     // Old parser I have yet to re-implement using regex
@@ -120,7 +128,7 @@ class Matrix {
         let str = document.getElementById( id ).value, clstr = '';
         if (str == '') { 
             document.getElementById(id).value = 0;
-            return math.complex(0,0);
+            return new Complex(0,0);
         }
         for (var i = 0; i < str.length; i++) {
             if ( this.isNumeric(str[i]) || ( this.legalChrs.indexOf(str[i]) >= 0 ) ) {
@@ -146,19 +154,19 @@ class Matrix {
         let answer
         if ( sstr.charAt(sstr.length-1) == 'i' || sstr.charAt(sstr.length-1) == 'j' ) {
             if ( fstr.charAt(fstr.length-1) != 'i' && fstr.charAt(fstr.length-1) != 'j' ) {
-                answer = math.complex( parseFloat(fstr), parseFloat(sstr) );
+                answer = new Complex( parseFloat(fstr), parseFloat(sstr) );
             } else {
                 return 'error';
             }
         } else if (fstr.charAt(fstr.length-1) == 'i' || fstr.charAt(fstr.length-1) == 'j') {
             sstr = sstr != '' ? sstr : 0;
-            answer = math.complex( parseFloat(sstr), parseFloat(fstr) );
+            answer = new Complex( parseFloat(sstr), parseFloat(fstr) );
         } else if ( this.isNumeric(fstr) && this.isNumeric(sstr)) {
-            answer = math.complex( parseFloat(sstr), parseFloat(fstr) );
+            answer = new Complex( parseFloat(sstr), parseFloat(fstr) );
         } else {
             fstr = this.isNumeric(fstr) ? fstr : 0;
             sstr = this.isNumeric(sstr) ? fstr : 0;
-            answer = math.complex( parseFloat(fstr), parseFloat(sstr) );
+            answer = new Complex( parseFloat(fstr), parseFloat(sstr) );
         }
         return answer;
     }
@@ -176,7 +184,9 @@ class Matrix {
         // Printing in phasor form
         for (var i = 0; i < this.n; i++) {
             if (result[i][0] != 0) {
-                pol += 'mag_' + (i+1) + ': ' + Number(math.sqrt((result[i][0].re)**2 + (result[i][0].im)**2)).toFixed(9) +
+                //console.log("prueba");
+                //console.log(result);  // DEBUG
+                pol += 'mag_' + (i+1) + ': ' + Number(Math.sqrt((result[i][0].re)**2 + (result[i][0].im)**2)).toFixed(9) +
                 ' ang_' + (i+1) + ': ' + Number(Math.atan(result[i][0].im/result[i][0].re)*180/Math.PI).toFixed(9) +
                 'º <br>';
             } else {
