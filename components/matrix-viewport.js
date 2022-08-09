@@ -86,7 +86,7 @@ class Matrix {
         this.matrix = str;
     }
 
-    // Method that uses math.js to solve the system of equations
+    // Method that uses ../numerical-methods/Javascritp/ElimGauss.js to solve the system of equations
     solve() {
         let A = [], b = [], parsed = '';
         // Generate empty Matrix A 
