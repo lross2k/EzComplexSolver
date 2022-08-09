@@ -104,10 +104,6 @@ class Matrix {
                     return;
                 }
                 A[i][j] = parsed;
-                if (i === 1) {
-                    console.log(parsed);
-                    console.log(A);
-                }
             }
             parsed = this.weirdParser( this.id + 'b' + (i+1) );   //id="' + this.id + 'b' + (i+1) + '"
             if (parsed == 'error') {
@@ -116,14 +112,9 @@ class Matrix {
                 document.getElementById("answer"+ this.id).innerText = "No se pudo calcular";
                 return;
             }
-            b.push( parsed );
+            b.push( [parsed] );
         }
-        console.log("Matrices");
-        console.log(A);
-        console.log(b);
-        let reslt = elimGaussComplex(A, b);
-        console.log(reslt)
-        this.prntResult(reslt);
+        this.prntResult(elimGaussComplex(A, b));
     }
 
     // Old parser I have yet to re-implement using regex
@@ -181,17 +172,15 @@ class Matrix {
         let pol = '';
 
         // Printing in rectangular form
-        for (var i = 0; i < this.n; i++) { str += 'real_' + (i+1) + ': ' + Number(result[i][0].re).toFixed(9) +
-        ' img_' + (i+1) + ': ' + Number(result[i][0].im).toFixed(9) + 'i <br>'; }
+        for (var i = 0; i < this.n; i++) { str += 'real_' + (i+1) + ': ' + Number(result[i][0].a).toFixed(9) +
+        ' img_' + (i+1) + ': ' + Number(result[i][0].b).toFixed(9) + 'i <br>'; }
         document.getElementById("answer"+ this.id).innerHTML = str;
 
         // Printing in phasor form
         for (var i = 0; i < this.n; i++) {
             if (result[i][0] != 0) {
-                //console.log("prueba");
-                //console.log(result);  // DEBUG
-                pol += 'mag_' + (i+1) + ': ' + Number(Math.sqrt((result[i][0].re)**2 + (result[i][0].im)**2)).toFixed(9) +
-                ' ang_' + (i+1) + ': ' + Number(Math.atan(result[i][0].im/result[i][0].re)*180/Math.PI).toFixed(9) +
+                pol += 'mag_' + (i+1) + ': ' + Number(Math.sqrt((result[i][0].a)**2 + (result[i][0].b)**2)).toFixed(9) +
+                ' ang_' + (i+1) + ': ' + Number(Math.atan(result[i][0].b/result[i][0].a)*180/Math.PI).toFixed(9) +
                 'º <br>';
             } else {
                 pol += 'x' + (i+1) + ': ' + 0 + '<br>';
