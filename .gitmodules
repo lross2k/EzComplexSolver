@@ -1,0 +1,3 @@
+[submodule "numerical-methods"]
+	path = numerical-methods
+	url = git@github.com:lross2k/numerical-methods.git

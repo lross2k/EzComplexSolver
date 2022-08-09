@@ -20,8 +20,11 @@ Valid input format:
 - 6 - 5.48484j
 
 ## Dependencies
-Currently using [math.js](https://mathjs.org/) for the 
+- Currently using [math.js](https://mathjs.org/) for the 
 numerical methods, it's the only dependency really, 
 everything else is plain JS, HTML and CSS terribly 
 wrote as I did this in a few hours over three days with 
 no prior experience in frontend.
+- Integrating my own Gaussian Elimination and complex numbers library for JavaScript, this is
+  implemented as a git submodule in `numerical-methods/` which shall be initiated with 
+  `git submodule init` after cloning this repo with git clone.
