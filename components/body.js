@@ -7,7 +7,9 @@ class Body extends HTMLElement {
         this.innerHTML = `
         <link rel="stylesheet" href="./components/body.css">
         <app-navbar></app-navbar>
+        <!-- No banner
         <h3 class="mensaje">¡Este sitio aún no se encuentra finalizado!</h3>
+        -->
         <app-matrixview id=1 n=2></app-matrixview>
         `
     }

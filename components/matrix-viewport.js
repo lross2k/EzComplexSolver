@@ -104,6 +104,10 @@ class Matrix {
                     return;
                 }
                 A[i][j] = parsed;
+                if (i === 1) {
+                    console.log(parsed);
+                    console.log(A);
+                }
             }
             parsed = this.weirdParser( this.id + 'b' + (i+1) );   //id="' + this.id + 'b' + (i+1) + '"
             if (parsed == 'error') {
